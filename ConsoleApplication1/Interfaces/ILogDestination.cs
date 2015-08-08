@@ -10,6 +10,6 @@ namespace ConsoleApplication1
     public interface ILogDestination
     {
 
-        void WriteMessage(string message, LogType type);
+        void WriteLog(string message, LogType type, List<LogType> _canBeLogged);
     }
 }

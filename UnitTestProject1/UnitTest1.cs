@@ -16,7 +16,7 @@ namespace UnitTestProject1
             ILogDestination fileWriterInjector = new FileTest();
             ILogDestination dataBaseWriterInjector = new DataBaseTest();
 
-            var jobLogger = new JobLogger2(true, false, false);
+            var jobLogger = new JobLogger2(true, false, false, false);
 
             //aplicar ID x set
             jobLogger.LoggerConsole = consoleWriterInjector;
@@ -40,7 +40,7 @@ namespace UnitTestProject1
             ILogDestination fileWriterInjector = new FileTest();
             ILogDestination dataBaseWriterInjector = new DataBaseTest();
 
-            var jobLogger = new JobLogger2(false, true, false);
+            var jobLogger = new JobLogger2(false, true, false, false);
 
             //aplicar ID x set
             jobLogger.LoggerConsole = consoleWriterInjector;
@@ -64,7 +64,7 @@ namespace UnitTestProject1
             ILogDestination fileWriterInjector = new FileTest();
             ILogDestination dataBaseWriterInjector = new DataBaseTest();
 
-            var jobLogger = new JobLogger2(false, false, true);
+            var jobLogger = new JobLogger2(false, false, true, false);
 
             //aplicar ID x set
             jobLogger.LoggerConsole = consoleWriterInjector;

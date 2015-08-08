@@ -16,22 +16,31 @@ namespace ConsoleApplication1
             _connectionString = ConfigurationManager.AppSettings["ConnectionString"];
         }
 
-
-        public void WriteMessage(string message, LogType type)
+        public void WriteLog(string message, LogType logType, List<LogType> _canBeLogged)
         {
-            if (string.IsNullOrEmpty(_connectionString))
+            if (_canBeLogged.Contains(logType))
             {
-                throw new ArgumentNullException("missing connection string");
-            }
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                string query = string.Format("Insert  into  Log  Values('{0}','{1}')", message, type);
-                SqlCommand command = new SqlCommand(query);
-                command.ExecuteNonQuery();
+                if (string.IsNullOrEmpty(_connectionString))
+                {
+                    throw new ArgumentNullException("missing connection string");
+                }
+                DataBase.InsertRecord(message, (int)logType);
             }
         }
 
+        private DataBaseHelper _dataBase;
+        private DataBaseHelper DataBase
+        {
+            get {
+                if (_dataBase == null)
+                {
+                    _dataBase = new DataBaseHelper(_connectionString);
+                }
+
+                return _dataBase;
+            }
+        }
         private string _connectionString = "";
+
     }
 }

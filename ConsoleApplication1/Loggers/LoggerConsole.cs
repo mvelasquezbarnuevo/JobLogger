@@ -13,12 +13,15 @@ namespace ConsoleApplication1
         { 
         }
 
-        public void WriteMessage(string message, LogType logType)
+        public void WriteLog(string message, LogType logType, List<LogType> _canBeLogged)
         {
+            if (_canBeLogged.Contains(logType))
+            {
 
-            if (ConsoleColors.ContainsKey(logType))
-                Console.ForegroundColor = ConsoleColors[logType];
-            Console.WriteLine(string.Format("{0} {1}", DateTime.Now.ToShortDateString(), message));
+                if (ConsoleColors.ContainsKey(logType))
+                    Console.ForegroundColor = ConsoleColors[logType];
+                Console.WriteLine(string.Format("{0} {1}", DateTime.Now.ToShortDateString(), message));
+            }
         }
 
         private Dictionary<LogType, ConsoleColor> ConsoleColors = new Dictionary<LogType, ConsoleColor>

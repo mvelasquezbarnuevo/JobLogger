@@ -11,13 +11,16 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var jobLoger = new JobLogger2(true, true, false);
+            var jobLoger = new JobLogger2(true, true, false, true);
+            jobLoger.LogAsMessage("   ");
+            jobLoger.LogAsMessage("this is a message   ");
+            jobLoger.LogAsWarning("this is a warning");
+            jobLoger.LogAsError("this is an error");
 
-            jobLoger.LogAsMessage("test1 ");
-            jobLoger.LogAsWarning("test2");
-            jobLoger.LogAsError("test3");
-
+  
             Console.ReadKey();
         }
     }
+
+
 }

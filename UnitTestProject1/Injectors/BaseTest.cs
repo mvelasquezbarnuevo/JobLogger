@@ -11,7 +11,7 @@ namespace UnitTestProject1.Injectors
 
     public class BaseTest : ILogDestination, ITest
     {
-        public void WriteMessage(string message, LogType type)
+        public void WriteLog(string message, LogType type, List<LogType> _canBeLogged)
         {
             _results.Add(new TestResult { Message = message, LogType = type });
         }

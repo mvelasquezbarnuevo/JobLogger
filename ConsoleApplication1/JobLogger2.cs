@@ -35,33 +35,52 @@ namespace ConsoleApplication1
             message = message.Trim();
 
             ValidateLogDestination();
-           
+
             if (LogToConsole)
                 WriteMessage(message, logType, LoggerConsole);
             if (LogToFile)
                 WriteMessage(message, logType, LoggerFile);
             if (LogToDatabase)
                 WriteMessage(message, logType, LoggerDataBase);
-           
+
         }
 
         public void WriteMessage(string message, LogType logType, ILogDestination logDestination)
         {
-            logDestination.WriteMessage(message, logType);
+            logDestination.WriteLog(message, logType, typesThatCanBeLogged());
         }
 
 
-        public JobLogger2(bool logToConsole, bool logToFile, bool logToDatabase)    
+
+
+        public JobLogger2(bool logToConsole, bool logToFile, bool logToDatabase, bool logOnlyErrors)
         {
             LogToFile = logToFile;
             LogToConsole = logToConsole;
             LogToDatabase = logToDatabase;
-            
+            _logOnlyErrors = logOnlyErrors;
         }
 
         public bool LogToFile { get; private set; }
         public bool LogToConsole { get; private set; }
         public bool LogToDatabase { get; private set; }
+
+        private List<LogType> typesThatCanBeLogged()
+        {
+            List<LogType> types = new List<LogType>();
+
+            types.Add(LogType.Message);
+            if (_logOnlyErrors)
+            {
+                types.Add(LogType.Error);
+            }
+            else
+            {
+                types.Add(LogType.Warning);
+                types.Add(LogType.Error);
+            }
+            return types;
+        }
 
         private ILogDestination _loggerConsole;
         public ILogDestination LoggerConsole
@@ -72,7 +91,8 @@ namespace ConsoleApplication1
                     _loggerConsole = new LoggerConsole();
                 return _loggerConsole;
             }
-            set {
+            set
+            {
                 _loggerConsole = value;
             }
         }
@@ -117,6 +137,8 @@ namespace ConsoleApplication1
                    || LogToFile
                    || LogToDatabase;
         }
+
+        private bool _logOnlyErrors;
     }
 }
 

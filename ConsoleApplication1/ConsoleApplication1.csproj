@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="JobLogger2.cs" />

@@ -18,19 +18,22 @@ namespace ConsoleApplication1
             _fileURL = string.Format("{0}LogFile_{1:yyyy-MM-dd}.txt", _fileLocation, DateTime.Now);
         }
 
-        public void WriteMessage(string message, LogType type)
+        public void WriteLog(string message, LogType logType, List<LogType> _canBeLogged)
         {
-            ValidateURL();
-
-            string fileContent = "";
-            if (File.Exists(_fileURL))
+            if (_canBeLogged.Contains(logType))
             {
-                //get contents and append data
-                fileContent = File.ReadAllText(_fileURL);
-            }
+                ValidateURL();
 
-            fileContent += string.Format("{0}{1}", DateTime.Now.ToShortDateString(), message) + Environment.NewLine;
-            File.WriteAllText(_fileURL, fileContent);
+                string fileContent = "";
+                if (File.Exists(_fileURL))
+                {
+                    //get contents and append data
+                    fileContent = File.ReadAllText(_fileURL);
+                }
+
+                fileContent += string.Format("{0}{1}", DateTime.Now.ToShortDateString(), message) + Environment.NewLine;
+                File.WriteAllText(_fileURL, fileContent);
+            }
         }
 
         private void ValidateURL()
