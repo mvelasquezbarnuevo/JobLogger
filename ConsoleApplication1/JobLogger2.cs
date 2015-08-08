@@ -49,10 +49,7 @@ namespace ConsoleApplication1
         {
             logDestination.WriteLog(message, logType, typesThatCanBeLogged());
         }
-
-
-
-
+        
         public JobLogger2(bool logToConsole, bool logToFile, bool logToDatabase, bool logOnlyErrors)
         {
             LogToFile = logToFile;
@@ -129,7 +126,7 @@ namespace ConsoleApplication1
         {
             if (AllConfigurationNotInFalse())
                 return;
-            throw new Exception("Invalid  configuration");
+            throw new Exception(Messages.Validation.InvalidConfig);
         }
         private bool AllConfigurationNotInFalse()
         {

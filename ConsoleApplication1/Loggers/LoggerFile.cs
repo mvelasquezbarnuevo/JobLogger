@@ -42,7 +42,7 @@ namespace ConsoleApplication1
 
             if (string.IsNullOrEmpty(_fileURL))
             {
-                throw new ArgumentNullException("missing file url");
+                throw new ArgumentNullException(Messages.Validation.MissingFile);
             }
 
 

@@ -22,7 +22,7 @@ namespace ConsoleApplication1
             {
                 if (string.IsNullOrEmpty(_connectionString))
                 {
-                    throw new ArgumentNullException("missing connection string");
+                    throw new ArgumentNullException(Messages.Validation.MissingConfig);
                 }
                 DataBase.InsertRecord(message, (int)logType);
             }

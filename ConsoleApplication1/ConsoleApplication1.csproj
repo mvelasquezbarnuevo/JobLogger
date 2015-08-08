@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Helpers\Messages.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="JobLogger2.cs" />
     <Compile Include="Interfaces\ILogDestination.cs" />
